@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Card from "./assets/components/Card";
 import Button from "./assets/components/Button";
+import data from "./assets/data/data";
 
 function App() {
     const defaultLanguage = {
@@ -12,7 +13,16 @@ function App() {
         <>
             <h1>Learn Web development</h1>
             <div className="container">
-                <Button setLanguage={setLanguage} />
+                <div className="d-flex gap-5 my-5">
+                    {data.map((language, index) => (
+                        <Button
+                            key={language.id}
+                            language={language}
+                            setLanguage={setLanguage}
+                            index={index}
+                        />
+                    ))}
+                </div>
                 <Card language={language} />
             </div>
         </>

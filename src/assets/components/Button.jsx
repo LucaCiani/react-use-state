@@ -1,21 +1,18 @@
-import data from "../data/data";
+import { useState } from "react";
 
-export default function Button({ setLanguage }) {
+export default function Button({ language, setLanguage, index }) {
+    const [isActive, setIsActive] = useState();
+    const handleClick = (index) => {
+        setIsActive(index);
+        setLanguage(language);
+    };
     return (
-        <div className="buttons d-flex gap-5 my-5">
-            {data.map((language) => (
-                <div key={language.id}>
-                    <button
-                        onClick={() => {
-                            setLanguage(language);
-                        }}
-                        className="btn btn-primary"
-                        type="button"
-                    >
-                        {language.title}
-                    </button>
-                </div>
-            ))}
-        </div>
+        <button
+            onClick={() => handleClick(index)}
+            className={isActive == index ? "btn selected" : "btn btn-primary"}
+            type="button"
+        >
+            {language.title}
+        </button>
     );
 }
